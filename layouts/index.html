@@ -8,11 +8,10 @@
   <header>
     <h1>{{ .Title }}</h1>
   </header>
-  {{ range (.Paginate (where .Data.Pages "Type" "post")).Pages }}
-    {{ partial "page-summary.html" . }}
-  {{ end }}
+    {{ range .Data.Pages }}
+        {{if eq .RelPermalink "/index.html" }} {{.Content}} {{end}}
+{{ end }}
 {{ end }}
 {{ define "footer" }}
-  {{ partial "pagination.html" . }}
   {{ partial "powered-by.html" . }}
 {{ end }}
